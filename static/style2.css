@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -91,7 +91,6 @@ button:hover {
     background: #3a9ad9;
 }
 
-/* Para o formulário do index.html */
 
 form {
     display: flex;
