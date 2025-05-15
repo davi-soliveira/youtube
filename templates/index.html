@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Baixar YouTube</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎬 YouTube Downloader</h1>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <form action="{{ url_for('downloads') }}" method="get" style="display:inline;">
+                    <button type="submit" class="btn-link">Ver downloads</button>
+                </form>
+            </div>
+        </header>
+
+        <main>
+            <form id="formulario" method="POST">
+                <input type="text" name="url" placeholder="Insira a URL do vídeo" required>
+                <select name="tipo">
+                    <option value="video">🎥 Vídeo (.mp4)</option>
+                    <option value="audio">🎵 Áudio (.mp3)</option>
+                </select>
+                <button type="submit">⬇️ Baixar</button>
+            </form>
+
+            <div id="carregando" style="display: none;">⏳ Baixando, por favor aguarde...</div>
+            <div id="mensagem">{{ mensagem or '' }}</div>
+        </main>
+    </div>
+
+    <script>
+        const form = document.getElementById('formulario');
+        const carregando = document.getElementById('carregando');
+        const mensagem = document.getElementById('mensagem');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            carregando.style.display = 'block';
+            mensagem.textContent = '';
+
+            const formData = new FormData(form);
+            const response = await fetch("/", {
+                method: "POST",
+                body: formData,
+            });
+
+            const text = await response.text();
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = text;
+            const novaMensagem = tempDiv.querySelector('#mensagem');
+
+            if (novaMensagem) {
+                mensagem.textContent = novaMensagem.textContent;
+            } else {
+                mensagem.textContent = "❌ Erro desconhecido.";
+            }
+
+            carregando.style.display = 'none';
+            form.reset(); // limpa os campos após download
+        });
+    </script>
+</body>
+
+</html>

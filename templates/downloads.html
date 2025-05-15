@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Downloads</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📂 Arquivos Baixados</h1>
+        </header>
+
+        <section>
+            <h2>🎥 Vídeos</h2>
+            <ul>
+                {% for video in videos %}
+                    <li>{{ video }}</li>
+                {% else %}
+                    <li class="empty">Nenhum vídeo baixado ainda.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>🎵 Áudios</h2>
+            <ul>
+                {% for audio in audios %}
+                    <li>{{ audio }}</li>
+                {% else %}
+                    <li class="empty">Nenhum áudio baixado ainda.</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <div class="btn-container">
+            <a href="{{ url_for('home') }}">
+                <button>⬅ Voltar</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+# Ambiente virtual
+venv/
+env/
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pastas de build, dist e pacotes
+build/
+dist/
+*.egg-info/
+
+# Arquivos executáveis (ex: PyInstaller)
+*.exe
+
+# Arquivos de configuração local e dados sensíveis
+*.env
+.env
+
+# Banco de dados local SQLite
+*.sqlite3
+
+# Logs
+*.log
+
+# Cache do Flask ou do sistema
+instance/
+.webassets-cache
+
+# Arquivos específicos do sistema
+.DS_Store
+Thumbs.db
+#pasta video e audio
+video/
+audio/
+main.py
